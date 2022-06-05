@@ -83,23 +83,32 @@ class MerkleTree:
     def printTree(self) -> None:
         self.__printTreeRec(self.root)
 
-    def __printTreeRec(self, node) -> None:
-        if node is not None:
-            if node.left is not None and node.right is not None:
-                # print("Left: " + str(node.left))
-                # print("Right: " + str(node.right))
-                pass
-            else:
-                print("Leaf Node")
-                print("Value: " + str(node.value))
-                if node.is_copied:
-                    print(f"Content: {str(node.content)}{colorstr('(Copy)', Fore.YELLOW)}")
-                else:
-                    print("Content: " + str(node.content))
-                print("")
+    # def __printTreeRec(self, node) -> None:
+    #     if node is not None:
+    #         if node.left is not None and node.right is not None:
+    #             # print("Left: " + str(node.left))
+    #             # print("Right: " + str(node.right))
+    #             pass
+    #         else:
+    #             print("Leaf Node")
+    #             print("Value: " + str(node.value))
+    #             if node.is_copied:
+    #                 print(f"Content: {str(node.content)}{colorstr('(Copy)', Fore.YELLOW)}")
+    #             else:
+    #                 print("Content: " + str(node.content))
+    #             print("")
 
-            self.__printTreeRec(node.left)
-            self.__printTreeRec(node.right)
+    #         self.__printTreeRec(node.left)
+    #         self.__printTreeRec(node.right)
+
+    def __printTreeRec(self, node, level=0):
+        if node is not None:
+            self.__printTreeRec(node.left, level + 1)
+            font_str = f"{' ' * 6 * level}-> "
+            print(f"{font_str}{node.value[:8]}{'(Copy)' if node.is_copied else ''}")
+            if not isinstance(node.content, list):
+                print(f"{' ' * len(font_str)}{node.content}")
+            self.__printTreeRec(node.right, level + 1)
 
     def getRootHash(self) -> str:
         return self.root.value
@@ -125,7 +134,7 @@ class MerkleTree:
 def main() -> None:
     # elems = ["Mix", "Merkle", "Tree", "From", "Onur Atakan ULUSOY", "https://github.com/onuratakan/mixmerkletree",
     # "GO"]
-    transactions = [Transaction('A', 'B', 10.1), Transaction('A', 'A', 5.0), Transaction('B', 'C', 7.1)]
+    transactions = [Transaction('A', 'B', 10.0), Transaction('A', 'A', 5.0), Transaction('B', 'C', 7.1)]
     print("Inputs: ")
     print("transaction: ", end="")
     print(*transactions, sep="\ntransaction: ")
