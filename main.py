@@ -17,10 +17,10 @@ def print_blocks(block: Block, is_first=False):
 
 
 def main():
-    chain = Chain(20)  # difficulty is xx bits
+    chain = Chain(12)  # difficulty is xx bits
     print_blocks(chain.blocks[0], is_first=True)
     tg1 = [Transaction('', 'A', 100)]
-    tg2 = [Transaction('A', 'B', 100), Transaction('B', 'A', 25), Transaction('B', 'B', 75)]
+    tg2 = [Transaction('A', 'B', 100), Transaction('B', 'B', 25), Transaction('B', 'B', 75)]
     tg3 = [Transaction('B', 'C', 15), Transaction('B', 'B', 60)]
     # tgs = [MerkleTree(tg2)]
     tgs = [MerkleTree(tg1), MerkleTree(tg2), MerkleTree(tg3)]
