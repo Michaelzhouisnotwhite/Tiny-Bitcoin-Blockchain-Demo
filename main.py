@@ -22,6 +22,7 @@ def main():
     tg1 = [Transaction('', 'A', 100)]
     tg2 = [Transaction('A', 'B', 100), Transaction('B', 'A', 25), Transaction('B', 'B', 75)]
     tg3 = [Transaction('B', 'C', 15), Transaction('B', 'B', 60)]
+    # tgs = [MerkleTree(tg2)]
     tgs = [MerkleTree(tg1), MerkleTree(tg2), MerkleTree(tg3)]
 
     for i, tg in enumerate(tgs):
@@ -29,7 +30,7 @@ def main():
         chain.add_to_pool(data)
         chain.mine()
         # if i % 5 == 0:
-        print_blocks(chain.blocks[i + 1], is_first=True)
+        print_blocks(chain.blocks[i + 1], is_first=False)
 
 
 if __name__ == "__main__":

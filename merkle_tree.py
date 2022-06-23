@@ -132,8 +132,6 @@ class MerkleTree:
 
 
 def main() -> None:
-    # elems = ["Mix", "Merkle", "Tree", "From", "Onur Atakan ULUSOY", "https://github.com/onuratakan/mixmerkletree",
-    # "GO"]
     transactions = [Transaction('A', 'B', 10.0), Transaction('A', 'A', 5.0), Transaction('B', 'C', 7.1)]
     print("Inputs: ")
     print("transaction: ", end="")
